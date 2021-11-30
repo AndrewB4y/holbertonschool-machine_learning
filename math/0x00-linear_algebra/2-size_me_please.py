@@ -4,7 +4,9 @@ def matrix_shape(matrix):
     """
     matrix_shape(matrix) - calculates the shape of a matrix
 
-    @matrix: nested object (often nested list) to get its' shape
+    @matrix: nested object (often nested list).
+             This object is asssumed to never be empty.
+             all elements in the same dimension are of the same type/shape.
 
     Returns: the dimensions of @matrix in a list.
     """
