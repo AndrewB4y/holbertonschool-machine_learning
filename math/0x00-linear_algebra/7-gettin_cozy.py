@@ -13,6 +13,8 @@ def cat_matrices2D(mat1, mat2, axis=0):
     Returns: A new matrix as result of adding element-wise @mat1 with @mat2.
              If @mat1 and @mat2 are not the same shape, return None.
     """
+    if mat1 is None or mat2 is None:
+        return None
 
     result = []
     if axis == 0:
