@@ -1,4 +1,4 @@
-#!/etc/usr/env python3
+#!/usr/bin/env python3
 
 
 def add_arrays(arr1, arr2):

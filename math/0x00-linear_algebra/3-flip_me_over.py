@@ -1,4 +1,4 @@
-#!/etc/bin/env python3
+#!/usr/bin/env python3
 
 def matrix_transpose(matrix):
     """

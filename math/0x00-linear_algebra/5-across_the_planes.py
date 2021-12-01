@@ -1,4 +1,4 @@
-#!/etc/usr/env python3
+#!/usr/bin/env python3
 
 def add_matrices2D(mat1, mat2):
     """
