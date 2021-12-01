@@ -4,6 +4,7 @@
 howdy_partner module
 """
 
+
 def cat_arrays(arr1, arr2):
     """
     cat_arrays(arr1, arr2) - concatenates two arrays.

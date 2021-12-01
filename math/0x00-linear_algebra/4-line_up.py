@@ -4,6 +4,7 @@
 line_up module
 """
 
+
 def add_arrays(arr1, arr2):
     """
     add_arrays(arr1, arr2) - adds two arrays element-wise

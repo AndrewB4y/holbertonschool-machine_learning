@@ -4,6 +4,7 @@
 ridin_bareback module
 """
 
+
 def mat_mul(mat1, mat2):
     """
     mat_mul(mat1, mat2) - performs matrix multiplication
