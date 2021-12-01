@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+"""
+line_up module
+"""
 
 def add_arrays(arr1, arr2):
     """

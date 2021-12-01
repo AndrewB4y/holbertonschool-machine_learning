@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+"""
+across_the_planes module
+"""
+
 def add_matrices2D(mat1, mat2):
     """
     add_matrices2D(mat1, mat2) - adds two matrices element-wise.

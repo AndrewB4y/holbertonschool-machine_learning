@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+"""
+ridin_bareback module
+"""
 
 def mat_mul(mat1, mat2):
     """

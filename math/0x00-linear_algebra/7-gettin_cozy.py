@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+"""
+gettin_cozy module
+"""
+
 def cat_matrices2D(mat1, mat2, axis=0):
     """
     cat_matrices2D(mat1, mat2, axis=0) - concatenates two matrices along a
