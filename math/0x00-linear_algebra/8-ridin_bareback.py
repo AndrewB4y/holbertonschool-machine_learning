@@ -15,7 +15,7 @@ def mat_mul(mat1, mat2):
     """
     if mat1 is None or mat2 is None:
         return None
-    
+
     rows1 = len(mat1)
     cols1 = len(mat1[0])
     rows2 = len(mat2)
@@ -23,8 +23,8 @@ def mat_mul(mat1, mat2):
 
     if cols1 != rows2:
         return None
-    
-    result = [[0,]*cols2 for _ in range(rows1)]
+
+    result = [[0, ]*cols2 for _ in range(rows1)]
     for i in range(rows1):
         # holdin on row from mat1
         r1 = mat1[i]
@@ -36,5 +36,5 @@ def mat_mul(mat1, mat2):
                 prod = r1[j] * mat2[j][h]
                 v_sum += prod
             result[i][h] = v_sum
-    
+
     return result
