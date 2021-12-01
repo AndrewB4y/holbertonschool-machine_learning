@@ -7,8 +7,8 @@ bracin_the_elements module
 
 def np_elementwise(mat1, mat2):
     """
-    np_elementwise(mat1, mat2) - performs element-wise addition, subtraction,
-                                 multiplication, and division.
+    np_elementwise(mat1, mat2) - performs element-wise addition,
+                                 substraction, multiplication, and division.
 
     @mat1: a numpy array which is never empty.
     @mat2: a numpy array which is never empty.
