@@ -22,4 +22,5 @@ def matrix_transpose(matrix):
         for row in matrix:
             aux.append(row[col])
         transpose.append(aux)
+    # transpose = [list(row) for row in list(zip(*matrix))]
     return transpose
