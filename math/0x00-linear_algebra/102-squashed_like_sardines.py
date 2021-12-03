@@ -55,6 +55,7 @@ def cat_matrices(mat1, mat2, axis=0):
     while current[0] < a_shape[0]:
         #  Dinamically accesing indices
         indices = "[" + "][".join([str(x) for x in current])+"]"
+        #  Dinamically extending matrix using indices
         exec("result"+indices+".extend(c_mat2"+indices+")")
         #  Updating indices in list current
         dim = axis
