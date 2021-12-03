@@ -39,16 +39,16 @@ def add_matrices(mat1, mat2):
     for d in shape[:0:-1]:
         str_ndim = '[' + str_ndim*d + '],'
     str_ndim = '[' + str_ndim*shape[0] + ']'
-    # str_ndim = '[0]*{}'.format(shape[-1])
-    # for dim in shape[-2::-1]:
-    #     str_ndim = '[' + str_ndim + ']*{}'.format(dim)
+
     result = eval(str_ndim)
+    # [alt] result = eval(repr(mat1))
     while current[0] < shape[0]:
         #  Dinamically accesing indices
         indices = "[" + "][".join([str(x) for x in current])+"]"
         n_mat1 = eval("mat1"+indices)
         n_mat2 = eval("mat2"+indices)
         exec("result"+indices+" = {}".format(n_mat1+n_mat2))
+        # [alt] exec("result"+indices+" += {}".format(n_mat2))
         #  Updating indices in list current
         dim = ndim
         while dim:
