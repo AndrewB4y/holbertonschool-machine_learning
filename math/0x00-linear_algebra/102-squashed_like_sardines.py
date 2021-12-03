@@ -51,7 +51,7 @@ def cat_matrices(mat1, mat2, axis=0):
         result.extend(c_mat2)
         return result
 
-    current = [0,]*len(a_s[:axis])
+    current = [0, ]*len(a_s[:axis])
     while current[0] < a_shape[0]:
         #  Dinamically accesing indices
         indices = "[" + "][".join([str(x) for x in current])+"]"
