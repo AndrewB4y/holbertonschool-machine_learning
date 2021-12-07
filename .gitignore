@@ -133,3 +133,4 @@ dmypy.json
 
 # own files
 legend.py
+test*
