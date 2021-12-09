@@ -15,10 +15,13 @@ def summation_i_squared(n):
              If n is not a valid number, returns None.
     """
 
-    if n < 1 or (isinstance(n, float) and not n.is_integer()):
+    if isinstance(n, float) and not n.is_integer():
         return None
 
     if n == 1:
         return 1
 
-    return int(n**2 + summation_i_squared(n - 1))
+    if n > 1:
+        return int(n**2 + summation_i_squared(n - 1))
+
+    return int(n**2 + summation_i_squared(n + 1))
