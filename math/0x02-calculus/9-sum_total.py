@@ -15,6 +15,9 @@ def summation_i_squared(n):
              If n is not a valid number, returns None.
     """
 
+    if n < 1:
+        return None
+
     if n == 1:
         return 1
 
