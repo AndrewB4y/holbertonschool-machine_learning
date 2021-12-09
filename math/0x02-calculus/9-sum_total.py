@@ -16,7 +16,7 @@ def summation_i_squared(n):
     """
 
     if n < 1 or \
-       isinstance(n, float) or \
+       not isinstance(n, int) or \
        n is None:
         return None
 
