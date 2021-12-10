@@ -29,10 +29,10 @@ def poly_integral(poly, C=0):
         else x
         for x in res
     ]
-    
+
     if type(C) is float and C.is_integer():
         C = int(C)
-    
+
     res.insert(0, C)
 
     while res[-1] == 0:
