@@ -19,7 +19,7 @@ def poly_integral(poly, C=0):
              the polynomial.
     """
 
-    if type(poly) is not list:
+    if type(poly) is not list or type(C) not in [int, float]:
         return None
 
     res = [x / (idx + 1) for idx, x in enumerate(poly)]
@@ -29,6 +29,10 @@ def poly_integral(poly, C=0):
         else x
         for x in res
     ]
+    
+    if type(C) is float and C.is_integer():
+        C = int(C)
+    
     res.insert(0, C)
 
     while res[-1] == 0:
