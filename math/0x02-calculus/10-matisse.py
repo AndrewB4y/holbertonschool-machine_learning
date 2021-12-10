@@ -21,10 +21,6 @@ def poly_derivative(poly):
 
     if type(poly) is not list:
         return None
-    
-    for po in poly:
-        if type(po) != int and type(po) != float:
-            return None
 
     res = [x * idx for idx, x in enumerate(poly)]
     del res[0]
