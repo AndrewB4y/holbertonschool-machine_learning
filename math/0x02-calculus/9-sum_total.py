@@ -30,4 +30,3 @@ def summation_i_squared(n):
     #     return int(n**2 + summation_i_squared(n - 1))
 
     # return int(n**2 + summation_i_squared(n + 1))
-    
