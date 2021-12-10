@@ -31,6 +31,9 @@ def poly_integral(poly, C=0):
     ]
     res.insert(0, C)
 
+    while res[-1] == 0:
+        del res[-1]
+
     if len(res) == 0:
         return [0, ]
 
