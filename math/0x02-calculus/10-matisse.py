@@ -26,6 +26,6 @@ def poly_derivative(poly):
     del res[0]
 
     if len(res) == 0:
-        return [0,]
+        return [0, ]
 
     return res
