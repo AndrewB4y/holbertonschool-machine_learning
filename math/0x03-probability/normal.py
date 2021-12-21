@@ -60,6 +60,7 @@ class Normal:
 
         if x < 0:
             return 0
+        x = float(x)
 
         p = (x - self.mean)**2.0 / self.stddev**2.0
         p = Normal.e**(p / -2.0)
@@ -89,6 +90,7 @@ class Normal:
 
         if x < 0:
             return 0
+        x = float(x)
 
         cdf = (
             1 + self.err_func((x - self.mean) / (self.stddev * (2**0.5)))
