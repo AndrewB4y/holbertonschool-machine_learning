@@ -37,7 +37,6 @@ class Exponential:
         pdf(self, x) - Probability density function method
         """
 
-        x = int(x)
         if x < 0:
             return 0
         p = self.lambtha * ((Exponential.e)**(-self.lambtha * x))
