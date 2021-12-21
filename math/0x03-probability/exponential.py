@@ -50,7 +50,7 @@ class Exponential:
         @x: is the number of “successes"
         Returns: the CDF value for @x
         """
-        x = int(x)
+
         if x < 0:
             return 0
         cdf = 1 - (Exponential.e**(-self.lambtha * x))
