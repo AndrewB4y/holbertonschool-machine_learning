@@ -58,8 +58,10 @@ class Normal:
 
         if x < 0:
             return 0
-        p = Normal.e**((((x - self.mean) / self.stddev)**2) / -2)
-        p = p / (self.stddev * ((Normal.pi * 2)**0.5))
+
+        p = (x - self.mean)**2.0 / (self.stddev)**2.0
+        p = Normal.e**(p / -2.0)
+        p = p / (self.stddev * ((Normal.pi * 2.0)**0.5))
         return p
 
     def err_func(self, x):
