@@ -26,7 +26,6 @@ class Poisson:
             return
 
         if type(data) is not list:
-            print(type(data))
             raise TypeError("data must be a list")
         elif len(data) <= 1:
             raise ValueError("data must contain multiple values")
