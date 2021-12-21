@@ -58,8 +58,8 @@ class Normal:
         pdf(self, x) - Probability density function method
         """
 
-        if x < 0:
-            return 0
+        # if x < 0:
+        #     return 0
         x = float(x)
 
         p = (x - self.mean)**2.0 / self.stddev**2.0
