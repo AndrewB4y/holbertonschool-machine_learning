@@ -31,3 +31,18 @@ class Poisson:
             raise ValueError("data must contain multiple values")
 
         self.lambtha = sum(data)/len(data)
+
+    def pmf(self, k):
+        """
+        pmf(self, k) - Probability mass function method
+        """
+
+        k = int(k)
+        if k < 0:
+            return 0
+        p = ((Poisson.e)**(-self.lambtha)) * (self.lambtha**k)
+        k_fact = 1
+        for i in range(1, k + 1):
+            k_fact = k_fact * i
+        p = p / k_fact
+        return p
