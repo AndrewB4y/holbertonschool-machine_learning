@@ -46,3 +46,20 @@ class Poisson:
             k_fact = k_fact * i
         p = p / k_fact
         return p
+
+    def cdf(self, k):
+        """
+        cdf(self, k) - Calculates the value of the cumulative distribution
+                       function (CDF) for a given number of “successes”.
+
+        @k: is the number of “successes"
+        Returns: the CDF value for @k
+        """
+        k = int(k)
+        if k < 0:
+            return 0
+        cdf = 0.0
+        for value in range(0, k + 1):
+            cdf += self.pmf(value)
+
+        return cdf
