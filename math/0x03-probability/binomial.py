@@ -76,30 +76,20 @@ class Binomial:
 
         return f
 
-    def err_func(self, x):
+    def cdf(self, k):
         """
-        err_func(self, x) - calculates de error function for given x.
-        """
+        cdf(self, k) - Calculates the value of the cumulative distribution
+                       function (CDF) for a number of “successes”.
 
-        err = 2 / (Binomial.pi**0.5)
-        err = err * (
-            x - (x**3) / 3 + (x**5) / 10 - (x**7) / 42 + (x**9) / 216
-        )
-        return err
-
-    def cdf(self, x):
-        """
-        cdf(self, x) - Calculates the value of the cumulative distribution
-                       function (CDF) for a given time period.
-
-        @x: is the number of “successes"
-        Returns: the CDF value for @x
+        @k: is the number of “successes"
+        Returns: the CDF value for @k
         """
 
-        x = float(x)
-
-        cdf = (
-            1 + self.err_func((x - self.mean) / (self.stddev * (2**0.5)))
-        ) / 2
+        k = int(k)
+        if k < 0 or k > self.n:
+            return 0
+        cdf = 0.0
+        for value in range(0, k + 1):
+            cdf += self.pmf(value)
 
         return cdf
