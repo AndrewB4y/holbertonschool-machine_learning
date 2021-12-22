@@ -24,7 +24,7 @@ class Binomial:
         if data is None:
             if n <= 0:
                 raise ValueError("n must be a positive value")
-            if p <= 0 or p > 1:
+            if p <= 0 or p >= 1:
                 raise ValueError(
                     "p must be greater than 0 and less than 1"
                 )
@@ -53,7 +53,7 @@ class Binomial:
         """
         if n <= 0:
             return 0
-        
+
         res = 1
         for i in range(1, n + 1):
             res = res * i
