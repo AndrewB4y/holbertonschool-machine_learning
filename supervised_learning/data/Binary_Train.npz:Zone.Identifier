@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://intranet.hbtn.io/
+HostUrl=https://s3.amazonaws.com/intranet-projects-files/holbertonschool-ml/Binary_Train.npz
