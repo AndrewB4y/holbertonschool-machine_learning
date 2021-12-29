@@ -70,8 +70,10 @@ class Neuron:
                      logistic regression.
         @Y: is a numpy.ndarray with shape (1, m) that contains the correct
             labels for the input data.
+            *m: is the number of examples
         @A: is a numpy.ndarray with shape (1, m) containing the activated
             output of the neuron for each example.
+            *m: is the number of examples
 
         Returns: the cost
         """
@@ -101,7 +103,17 @@ class Neuron:
             labels for the input data.
         
         Returns: the neuron's prediction and the cost of the network,
-                 respectively
+                 respectively.
+                 The prediction should be a numpy.ndarray with shape (1, m)
+                 containing the predicted labels for each example.
+                 The label values should be 1 if the output of the network is
+                 >= 0.5 and 0 otherwise.
         """
 
-        
+        prediction = self.forward_prop(X)
+
+        cost = self.cost(Y, prediction)
+
+        prediction = np.where(prediction >= 0.5, 1, 0)
+
+        return prediction, cost
