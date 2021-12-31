@@ -93,7 +93,7 @@ class Neuron:
 
     def evaluate(self, X, Y):
         """
-        evaluate(X, Y) Evaluates the neuron's predictions.
+        evaluate(X, Y) - Evaluates the neuron's predictions.
 
         @X: is a numpy.ndarray with shape (nx, m) that contains
             the input data.
