@@ -31,7 +31,7 @@ class DeepNeuralNetwork:
 
         if type(layers) is not list:
             raise TypeError("layers must be a list of positive integers")
-        elif not all(nodes > 0 for nodes in layers):
+        elif not all(type(nodes) is int and nodes > 0 for nodes in layers):
             raise ValueError("layers must be a list of positive integers")
 
         # Number of layers in the neural network.
