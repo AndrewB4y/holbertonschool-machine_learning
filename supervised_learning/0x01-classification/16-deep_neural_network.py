@@ -42,7 +42,7 @@ class DeepNeuralNetwork:
         self.weights = {}
         for i in range(len(layers)):
             # position 0 of @layers correspond to the layer 1...
-            if type(layers[i]) is not int and layers[i] < 1:
+            if type(layers[i]) is not int or layers[i] < 1:
                 raise TypeError("layers must be a list of positive integers")
             if i == 0:
                 W = np.random.randn(layers[i], nx) * np.sqrt(2 / nx)
