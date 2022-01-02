@@ -22,7 +22,7 @@ def one_hot_encode(Y, classes):
 
     oh_encoded = np.zeros((classes, len(Y)))
     for idx, row in enumerate(oh_encoded):
-        if Y[idx] >= classes:
+        if Y[idx] >= classes or Y[idx] < 0:
             return None
         row[Y[idx]] = 1
 
