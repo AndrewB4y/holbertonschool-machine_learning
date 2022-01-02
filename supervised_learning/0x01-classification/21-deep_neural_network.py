@@ -145,7 +145,7 @@ class DeepNeuralNetwork:
 
     def gradient_descent(self, Y, cache, alpha=0.05):
         """
-        gradient_descent(X, Y, cache, alpha=0.05) - Calculates one pass of
+        gradient_descent(Y, cache, alpha=0.05) - Calculates one pass of
                                     gradient descent on the neural network.
         @Y: a numpy.ndarray with shape (1, m) that contains the correct
             labels for the input data.
