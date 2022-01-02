@@ -20,10 +20,10 @@ def one_hot_encode(Y, classes):
              None on failure.
     """
 
-    oh_encoded = np.zeros((len(Y), classes))
-    for idx, cat in enumerate(Y):
-        if Y[idx] >= classes or Y[idx] < 0:
-            return None
-        oh_encoded[idx, Y[idx]] = 1
+    if Y is None or type(Y) is not np.ndarray or type(classes) is not int \
+            or not all([x >= 0 and x < classes for x in Y]):
+        return None
+
+    oh_encoded = np.eye(classes)[Y]
 
     return oh_encoded.T
