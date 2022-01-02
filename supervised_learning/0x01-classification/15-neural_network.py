@@ -183,7 +183,8 @@ class NeuralNetwork:
     def train(self, X, Y, iterations=5000, alpha=0.05,
               verbose=True, graph=True, step=100):
         """
-        train(X, Y, iterations=5000, alpha=0.05) - Trains the neural network.
+        train(X, Y, iterations=5000, alpha=0.05,
+              verbose=True, graph=True, step=100) - Trains the neural network.
 
         @X: a numpy.ndarray with shape (nx, m) that contains the input data.
             *nx is the number of input features to the neuron.
