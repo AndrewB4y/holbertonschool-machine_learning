@@ -20,10 +20,10 @@ def one_hot_encode(Y, classes):
              None on failure.
     """
 
-    oh_encoded = np.zeros((classes, len(Y)))
-    for idx, row in enumerate(oh_encoded):
+    oh_encoded = np.zeros((len(Y), classes))
+    for idx, cat in enumerate(Y):
         if Y[idx] >= classes or Y[idx] < 0:
             return None
-        row[Y[idx]] = 1
+        oh_encoded[idx, Y[idx]] = 1
 
     return oh_encoded.T
