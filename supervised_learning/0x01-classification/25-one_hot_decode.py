@@ -20,7 +20,7 @@ def one_hot_decode(one_hot):
     """
 
     if one_hot is None or type(one_hot) is not np.ndarray or \
-        len(one_hot.shape) != 2:
+            len(one_hot.shape) != 2:
         return None
 
     oh_decoded = np.argmax(one_hot, axis=0)
