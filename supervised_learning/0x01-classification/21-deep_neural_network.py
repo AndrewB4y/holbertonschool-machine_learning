@@ -6,7 +6,6 @@ DeepNeuralNetwork module - defines a deep neural network performing
 """
 
 import numpy as np
-from numpy.lib.function_base import select
 
 
 class DeepNeuralNetwork:
@@ -158,7 +157,6 @@ class DeepNeuralNetwork:
         """
 
         m = Y.shape[1]
-        dZl_1 = 0
 
         temps = {}
         for layer in range(self.L, 0, -1):
