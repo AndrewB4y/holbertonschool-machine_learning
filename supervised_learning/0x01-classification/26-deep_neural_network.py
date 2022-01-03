@@ -5,6 +5,7 @@ DeepNeuralNetwork module - defines a deep neural network performing
                         binary classification.
 """
 
+import os
 import pickle
 import numpy as np
 
@@ -286,7 +287,7 @@ class DeepNeuralNetwork:
             filename += '.pkl'
 
         with open(filename, 'wb') as f:
-            pickle.dump(self, f)
+            pickle.dump(self, f, protocol=3)
 
     @staticmethod
     def load(filename):
@@ -303,6 +304,10 @@ class DeepNeuralNetwork:
 
         if not filename.endswith('.pkl'):
             return None
+
+        if not os.path.isfile(filename):
+            return None
+
         try:
             with open(filename, 'rb') as f:
                 obj = pickle.load(f, fix_imports=True)
