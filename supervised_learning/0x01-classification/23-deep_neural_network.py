@@ -243,29 +243,27 @@ class DeepNeuralNetwork:
                 x_iteration.append(0)
                 y_costs.append(cost)
 
-        for i in range(iterations):
+        for i in range(iterations + 1):
             A, cache = self.forward_prop(X)
             self.gradient_descent(Y, cache, alpha=alpha)
 
-            if verbose:
-                if i != 0 and i % step == 0:
+            if i != 0 and i % step == 0:
+                if verbose or graph:
                     cost = self.cost(Y, A)
+                if verbose:
                     print("Cost after {} iterations: {}".format(i, cost))
-                    if graph:
-                        x_iteration.append(i)
-                        y_costs.append(cost)
+                if graph:
+                    x_iteration.append(i)
+                    y_costs.append(cost)
 
-        if verbose:
-            cost = self.cost(Y, A)
-            print("Cost after {} iterations: {}".format(i + 1, cost))
-            if graph:
-                x_iteration.append(i)
-                y_costs.append(cost)
-                plt.plot(x_iteration, y_costs, 'b-')
-                plt.xlabel('iteration')
-                plt.ylabel('cost')
-                plt.title("Training Cost")
-                plt.show()
+        if graph:
+            x_iteration.append(i)
+            y_costs.append(cost)
+            plt.plot(x_iteration, y_costs, 'b-')
+            plt.xlabel('iteration')
+            plt.ylabel('cost')
+            plt.title("Training Cost")
+            plt.show()
 
         n_eval = self.evaluate(X, Y)
 
