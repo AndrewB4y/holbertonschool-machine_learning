@@ -278,8 +278,6 @@ class DeepNeuralNetwork:
             *If filename does not have the extension .pkl, it is added.
         """
 
-        import pickle
-
         if filename[-4:] != '.pkl':
             filename += '.pkl'
 
@@ -291,7 +289,6 @@ class DeepNeuralNetwork:
         """
         load(filename) - Loads a pickled DeepNeuralNetwork object.
         """
-        import pickle
 
         try:
             with open(filename, 'rb') as f:
