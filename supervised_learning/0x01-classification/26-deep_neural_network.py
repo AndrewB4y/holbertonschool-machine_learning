@@ -279,7 +279,7 @@ class DeepNeuralNetwork:
             *If filename does not have the extension .pkl, it is added.
         """
 
-        if filename[-4:] != '.pkl':
+        if not filename.endswith('.pkl'):
             filename += '.pkl'
 
         with open(filename, 'wb') as f:
