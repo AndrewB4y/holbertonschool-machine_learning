@@ -289,12 +289,17 @@ class DeepNeuralNetwork:
     def load(filename):
         """
         load(filename) - Loads a pickled DeepNeuralNetwork object.
+
+        @filename: the file from which the object should be loaded.
+        
+        Returns: the loaded object, or None if filename doesn't exist
         """
 
+        if filename is None or not filename.endswith('.pkl'):
+            return None
         try:
             with open(filename, 'rb') as f:
                 obj = pickle.load(f)
+            return obj
         except FileNotFoundError:
             return None
-
-        return obj
