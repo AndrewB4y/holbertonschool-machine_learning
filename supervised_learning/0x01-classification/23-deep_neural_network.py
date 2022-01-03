@@ -235,13 +235,14 @@ class DeepNeuralNetwork:
 
         x_iteration = []
         y_costs = []
-        if verbose:
+        if verbose or graph:
             A, cache = self.forward_prop(X)
             cost = self.cost(Y, A)
+        if verbose:
             print("Cost after {} iterations: {}".format(0, cost))
-            if graph:
-                x_iteration.append(0)
-                y_costs.append(cost)
+        if graph:
+            x_iteration.append(0)
+            y_costs.append(cost)
 
         for i in range(iterations + 1):
             A, cache = self.forward_prop(X)

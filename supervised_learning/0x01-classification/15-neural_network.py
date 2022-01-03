@@ -236,13 +236,14 @@ class NeuralNetwork:
 
         x_iteration = []
         y_costs = []
-        if verbose:
+        if verbose or graph:
             A1, A2 = self.forward_prop(X)
             cost = self.cost(Y, A2)
+        if verbose:
             print("Cost after {} iterations: {}".format(0, cost))
-            if graph:
-                x_iteration.append(0)
-                y_costs.append(cost)
+        if graph:
+            x_iteration.append(0)
+            y_costs.append(cost)
 
         for i in range(iterations + 1):
             A1, A2 = self.forward_prop(X)
