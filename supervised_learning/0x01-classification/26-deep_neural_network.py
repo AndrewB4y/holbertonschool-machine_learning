@@ -291,6 +291,7 @@ class DeepNeuralNetwork:
         """
         load(filename) - Loads a pickled DeepNeuralNetwork object.
         """
+        import pickle
 
         try:
             with open(filename, 'rb') as f:
