@@ -279,6 +279,9 @@ class DeepNeuralNetwork:
             *If filename does not have the extension .pkl, it is added.
         """
 
+        if filename is None or filename == '':
+            return None
+
         if not filename.endswith('.pkl'):
             filename += '.pkl'
 
@@ -295,11 +298,14 @@ class DeepNeuralNetwork:
         Returns: the loaded object, or None if filename doesn't exist
         """
 
-        if filename is None or not filename.endswith('.pkl'):
+        if filename is None or filename == '':
+            return None
+
+        if not filename.endswith('.pkl'):
             return None
         try:
             with open(filename, 'rb') as f:
-                obj = pickle.load(f)
+                obj = pickle.load(f, fix_imports=True)
             return obj
         except FileNotFoundError:
             return None
