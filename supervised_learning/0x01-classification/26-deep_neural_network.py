@@ -163,7 +163,7 @@ class DeepNeuralNetwork:
             dWl = np.matmul(dZl, cache[Al_str].T) / m
             dbl = np.sum(dZl, axis=1, keepdims=True) / m
             dAl = cache[Al_str] * (1 - cache[Al_str])
-            dZl = np.matmul(self.weights['W' + str(layer)].T, dZl) * dAl
+            dZl = np.matmul(self.weights[Wl_str].T, dZl) * dAl
 
             self.__weights[Wl_str] -= alpha * dWl
             self.__weights[bl_str] -= alpha * dbl
@@ -225,10 +225,13 @@ class DeepNeuralNetwork:
 
         for i in range(iterations + 1):
             self.forward_prop(X)
+
             if i in x_iteration:
+                cost = self.cost(Y, self.cache['A' + str(self.L)])
+                y_costs.append(cost)
                 if verbose:
-                    cost = self.cost(Y, self.cache['A' + str(self.L)])
                     print("Cost after {} iterations: {}".format(i, cost))
+
             self.gradient_descent(Y, self.cache, alpha=alpha)
 
         if graph:
