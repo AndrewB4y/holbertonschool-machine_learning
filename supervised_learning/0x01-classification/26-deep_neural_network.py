@@ -135,7 +135,7 @@ class DeepNeuralNetwork:
         self.forward_prop(X)
 
         return np.where(self.cache['A' + str(self.L)] >= 0.5, 1, 0), \
-                self.cost(Y, self.cache['A' + str(self.L)])
+            self.cost(Y, self.cache['A' + str(self.L)])
 
     def gradient_descent(self, Y, cache, alpha=0.05):
         """
