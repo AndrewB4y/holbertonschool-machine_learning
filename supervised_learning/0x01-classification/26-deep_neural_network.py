@@ -48,12 +48,13 @@ class DeepNeuralNetwork:
             if type(layers[i]) is not int or layers[i] < 1:
                 raise TypeError("layers must be a list of positive integers")
             if i == 0:
-                W = np.random.randn(layers[i], nx) * np.sqrt(2 / nx)
+                self.__weights['W' + str(i + 1)] = np.random.randn(
+                    layers[i], nx) * np.sqrt(2 / nx)
             else:
-                W = np.random.randn(
+                self.__weights['W' + str(i + 1)] = np.random.randn(
                     layers[i], layers[i-1]) * np.sqrt(2 / layers[i-1])
+
             # offset the @i to correspond i=0 with W1.
-            self.__weights['W' + str(i + 1)] = W
             self.__weights['b' + str(i + 1)] = np.zeros((layers[i], 1))
 
     @property
@@ -152,26 +153,19 @@ class DeepNeuralNetwork:
 
         m = Y.shape[1]
 
-        temps = {}
+        dZl = cache['A' + str(self.L)] - Y
         for layer in range(self.L, 0, -1):
             Al_str = 'A' + str(layer)
             Wl_str = 'W' + str(layer)
             bl_str = 'b' + str(layer)
 
-            if layer == self.L:
-                dZl = cache[Al_str] - Y
-            else:
-                dAl = cache[Al_str] * (1 - cache[Al_str])
-                dZl = np.matmul(
-                    self.weights['W' + str(layer + 1)].T, dZl) * dAl
-
             dWl = np.matmul(dZl, cache['A' + str(layer - 1)].T) / m
             dbl = np.sum(dZl, axis=1, keepdims=True) / m
+            dAl = cache[Al_str] * (1 - cache[Al_str])
+            dZl = np.matmul(self.weights['W' + str(layer + 1)].T, dZl) * dAl
 
-            temps[Wl_str] = self.weights[Wl_str] - alpha * dWl
-            temps[bl_str] = self.weights[bl_str] - alpha * dbl
-
-        self.__weights.update(temps)
+            self.__weights[Wl_str] -= alpha * dWl
+            self.__weights[bl_str] -= alpha * dbl
 
     def train(self, X, Y, iterations=5000, alpha=0.05,
               verbose=True, graph=True, step=100):
