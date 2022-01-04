@@ -8,6 +8,7 @@ DeepNeuralNetwork module - defines a deep neural network performing
 import os
 import pickle
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 class DeepNeuralNetwork:
@@ -155,14 +156,14 @@ class DeepNeuralNetwork:
 
         dZl = cache['A' + str(self.L)] - Y
         for layer in range(self.L, 0, -1):
-            Al_str = 'A' + str(layer)
+            Al_str = 'A' + str(layer - 1)
             Wl_str = 'W' + str(layer)
             bl_str = 'b' + str(layer)
 
-            dWl = np.matmul(dZl, cache['A' + str(layer - 1)].T) / m
+            dWl = np.matmul(dZl, cache[Al_str].T) / m
             dbl = np.sum(dZl, axis=1, keepdims=True) / m
             dAl = cache[Al_str] * (1 - cache[Al_str])
-            dZl = np.matmul(self.weights['W' + str(layer + 1)].T, dZl) * dAl
+            dZl = np.matmul(self.weights['W' + str(layer)].T, dZl) * dAl
 
             self.__weights[Wl_str] -= alpha * dWl
             self.__weights[bl_str] -= alpha * dbl
@@ -203,8 +204,6 @@ class DeepNeuralNetwork:
                  The private attributes __weights and __cache are updated.
         """
 
-        import matplotlib.pyplot as plt
-
         if type(iterations) is not int:
             raise TypeError("iterations must be an integer")
         if iterations <= 0:
@@ -221,33 +220,18 @@ class DeepNeuralNetwork:
             if step <= 0 or step > iterations:
                 raise ValueError("step must be positive and <= iterations")
 
-        x_iteration = []
+        x_iteration = np.arange(0, iterations + step, step)
         y_costs = []
-        if verbose or graph:
-            self.forward_prop(X)
-            cost = self.cost(Y, self.cache['A' + str(self.L)])
-        if verbose:
-            print("Cost after {} iterations: {}".format(0, cost))
-        if graph:
-            x_iteration.append(0)
-            y_costs.append(cost)
 
         for i in range(iterations + 1):
             self.forward_prop(X)
+            if i in x_iteration:
+                if verbose:
+                    cost = self.cost(Y, self.cache['A' + str(self.L)])
+                    print("Cost after {} iterations: {}".format(i, cost))
             self.gradient_descent(Y, self.cache, alpha=alpha)
 
-            if i != 0 and i % step == 0:
-                if verbose or graph:
-                    cost = self.cost(Y, self.cache['A' + str(self.L)])
-                if verbose:
-                    print("Cost after {} iterations: {}".format(i, cost))
-                if graph:
-                    x_iteration.append(i)
-                    y_costs.append(cost)
-
         if graph:
-            x_iteration.append(i)
-            y_costs.append(cost)
             plt.plot(x_iteration, y_costs, 'b-')
             plt.xlabel('iteration')
             plt.ylabel('cost')
