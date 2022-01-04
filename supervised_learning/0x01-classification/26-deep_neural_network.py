@@ -112,14 +112,9 @@ class DeepNeuralNetwork:
 
         m = Y.shape[1]
         cost = - np.sum(
-            Y * np.log(A) + ((1 - Y) * np.log(1.0000001 - A))
+            np.multiply(Y, np.log(A)) +
+            np.multiply((1 - Y), np.log(1.0000001 - A))
         ) / m
-
-        """
-        Squeeze to make sure your cost's shape is what we expect:
-        (e.g. this turns [[17]] into 17).
-        """
-        cost = np.squeeze(cost)
 
         return cost
 
@@ -137,13 +132,10 @@ class DeepNeuralNetwork:
                  respectively.
         """
 
-        A, cache = self.forward_prop(X)
+        self.forward_prop(X)
 
-        cost = self.cost(Y, A)
-
-        prediction = np.where(A >= 0.5, 1, 0)
-
-        return prediction, cost
+        return np.where(self.cache['A' + str(self.L)] >= 0.5, 1, 0), \
+                self.cost(Y, self.cache['A' + str(self.L)])
 
     def gradient_descent(self, Y, cache, alpha=0.05):
         """
@@ -238,8 +230,8 @@ class DeepNeuralNetwork:
         x_iteration = []
         y_costs = []
         if verbose or graph:
-            A, cache = self.forward_prop(X)
-            cost = self.cost(Y, A)
+            self.forward_prop(X)
+            cost = self.cost(Y, self.cache['A' + str(self.L)])
         if verbose:
             print("Cost after {} iterations: {}".format(0, cost))
         if graph:
@@ -247,12 +239,12 @@ class DeepNeuralNetwork:
             y_costs.append(cost)
 
         for i in range(iterations + 1):
-            A, cache = self.forward_prop(X)
-            self.gradient_descent(Y, cache, alpha=alpha)
+            self.forward_prop(X)
+            self.gradient_descent(Y, self.cache, alpha=alpha)
 
             if i != 0 and i % step == 0:
                 if verbose or graph:
-                    cost = self.cost(Y, A)
+                    cost = self.cost(Y, self.cache['A' + str(self.L)])
                 if verbose:
                     print("Cost after {} iterations: {}".format(i, cost))
                 if graph:
@@ -268,9 +260,7 @@ class DeepNeuralNetwork:
             plt.title("Training Cost")
             plt.show()
 
-        n_eval = self.evaluate(X, Y)
-
-        return n_eval
+        return self.evaluate(X, Y)
 
     def save(self, filename):
         """
