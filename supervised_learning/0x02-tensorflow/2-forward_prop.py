@@ -3,7 +3,7 @@
 """
 2-forward_prop module
 """
-new_layer = __import__('1-create_layer').create_layer
+create_layer = __import__('1-create_layer').create_layer
 
 
 def forward_prop(x, layer_sizes=[], activations=[]):
@@ -20,8 +20,8 @@ def forward_prop(x, layer_sizes=[], activations=[]):
     Returns: the prediction of the network in tensor form.
     """
 
-    layer = new_layer(x, layer_sizes[0], activations[0])
+    layer = create_layer(x, layer_sizes[0], activations[0])
     for i in range(1, len(layer_sizes)):
-        layer = new_layer(layer, layer_sizes[i], activations[i])
+        layer = create_layer(layer, layer_sizes[i], activations[i])
 
     return layer
