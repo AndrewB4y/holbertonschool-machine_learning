@@ -19,16 +19,17 @@ def evaluate(X, Y, save_path):
     """
 
     with tf.Session() as sess:
-        saver = tf.train.import_meta_graph("{}.meta".format(save_path))
+        saver = tf.train.import_meta_graph(save_path + '.meta')
         saver.restore(sess, save_path)
 
-        x = tf.get_collection("x")[0]
-        y = tf.get_collection("y")[0]
-        t_y_pred = tf.get_collection("y_pred")[0]
-        pred_accuracy = tf.get_collection("accuracy")[0]
-        t_loss = tf.get_collection("loss")[0]
+        x = tf.get_collection('x')[0]
+        y = tf.get_collection('y')[0]
+        y_pred = tf.get_collection('y_pred')[0]
+        accuracy = tf.get_collection('accuracy')[0]
+        loss = tf.get_collection('loss')[0]
 
-        t_prediction = sess.run(t_y_pred, feed_dict={x: X, y: Y})
-        t_accuracy = sess.run(pred_accuracy, feed_dict={x: X, y: Y})
-        cost = sess.run(t_loss, feed_dict={x: X, y: Y})
-        return t_prediction, t_accuracy, cost
+        test_prediction = sess.run(y_pred, feed_dict={x: X, y: Y})
+        test_accuracy = sess.run(accuracy, feed_dict={x: X, y: Y})
+        test_cost = sess.run(loss, feed_dict={x: X, y: Y})
+
+    return test_prediction, test_accuracy, test_cost
