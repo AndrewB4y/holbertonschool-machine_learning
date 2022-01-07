@@ -15,12 +15,12 @@ def evaluate(X, Y, save_path):
     @Y: is a numpy.ndarray containing the one-hot labels for X.
     @save_path: is the location to load the model from.
 
-    Returns: the network’s prediction, accuracy, and loss, respectively.
+    Returns: the network's prediction, accuracy, and loss, respectively.
     """
 
-    with tf.Session() as session:
+    with tf.Session() as sess:
         saver = tf.train.import_meta_graph("{}.meta".format(save_path))
-        saver.restore(session, save_path)
+        saver.restore(sess, save_path)
 
         x = tf.get_collection("x")[0]
         y = tf.get_collection("y")[0]
@@ -28,7 +28,7 @@ def evaluate(X, Y, save_path):
         pred_accuracy = tf.get_collection("accuracy")[0]
         t_loss = tf.get_collection("loss")[0]
 
-        t_prediction = session.run(t_y_pred, feed_dict={x: X, y: Y})
-        t_accuracy = session.run(pred_accuracy, feed_dict={x: X, y: Y})
-        cost = session.run(t_loss, feed_dict={x: X, y: Y})
+        t_prediction = sess.run(t_y_pred, feed_dict={x: X, y: Y})
+        t_accuracy = sess.run(pred_accuracy, feed_dict={x: X, y: Y})
+        cost = sess.run(t_loss, feed_dict={x: X, y: Y})
         return t_prediction, t_accuracy, cost
