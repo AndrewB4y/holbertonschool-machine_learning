@@ -24,11 +24,11 @@ def evaluate(X, Y, save_path):
 
         x = tf.get_collection("x")[0]
         y = tf.get_collection("y")[0]
-        y_pred = tf.get_collection("y_pred")[0]
-        accuracy = tf.get_collection("accuracy")[0]
-        loss = tf.get_collection("loss")[0]
+        t_y_pred = tf.get_collection("y_pred")[0]
+        pred_accuracy = tf.get_collection("accuracy")[0]
+        t_loss = tf.get_collection("loss")[0]
 
-        prediction = session.run(y_pred, feed_dict={x: X, y: Y})
-        accuracy = session.run(accuracy, feed_dict={x: X, y: Y})
-        net_loss = session.run(loss, feed_dict={x: X, y: Y})
-        return prediction, accuracy, net_loss
+        t_prediction = session.run(t_y_pred, feed_dict={x: X, y: Y})
+        t_accuracy = session.run(pred_accuracy, feed_dict={x: X, y: Y})
+        cost = session.run(t_loss, feed_dict={x: X, y: Y})
+        return t_prediction, t_accuracy, cost
