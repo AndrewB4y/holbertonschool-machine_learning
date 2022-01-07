@@ -3,7 +3,7 @@
 """
 6-train module
 """
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 calculate_accuracy = __import__('3-calculate_accuracy').calculate_accuracy
 calculate_loss = __import__('4-calculate_loss').calculate_loss
 create_placeholders = __import__('0-create_placeholders').create_placeholders

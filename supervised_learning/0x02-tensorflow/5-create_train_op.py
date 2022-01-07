@@ -3,7 +3,7 @@
 """
 5-create_train_op module
 """
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 
 def create_train_op(loss, alpha):
