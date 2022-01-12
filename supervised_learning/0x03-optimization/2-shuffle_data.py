@@ -20,6 +20,6 @@ def shuffle_data(X, Y):
     Returns: the shuffled X and Y matrices
     """
 
-    temp = np.concatenate((X, Y), axis=1)
+    temp = np.random.permutation(X.shape[0])
 
-    return np.hsplit(np.random.permutation(temp), 2)
+    return X[temp], Y[temp]
